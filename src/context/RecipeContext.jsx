@@ -19,8 +19,6 @@ const RecipeContextProvider = ({ children }) => {
     meal: "breakfast",
   });
 
- 
-
   const FEATURED_API = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${API_KEY}&mealType=${meal}`;
 
   const getRecipes = () => {
@@ -33,8 +31,8 @@ const RecipeContextProvider = ({ children }) => {
   // - ilk açılışta gelmesi için
   useEffect(() => {
     getRecipes();
-  }, [setSearch]);
-  const values = { recipes, loading, search, setSearch };
+  }, []);
+  const values = { recipes, loading, search, setSearch, getRecipes };
 
   return (
     <RecipeContext.Provider value={values}>{children}</RecipeContext.Provider>

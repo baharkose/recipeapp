@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route, Outlet, useParams } from "react-router-dom";
 import Details from "../pages/details/Details";
 import Login from "../pages/login/Login";
 import Home from "../pages/home/Home";
@@ -16,6 +16,7 @@ const Layout = ({ children }) => (
 );
 
 const ProtectedRoutes = () => {
+  
   return (
     <Layout>
       <Outlet />

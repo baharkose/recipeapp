@@ -1,73 +1,81 @@
 import React from "react";
 import Header from "../../components/header/Header";
 import { useRecipeContext } from "../../context/RecipeContext";
-
-const posts = [
-  {
-    title: "What is SaaS? Software as a Service Explained",
-    desc: "Going into this journey, I had a standard therapy regimen, based on looking at the research literature. After I saw the movie, I started to ask other people.",
-    img: "https://images.unsplash.com/photo-1556155092-490a1ba16284?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-    date: "Jan 4 2022",
-    href: "javascript:void(0)",
-  },
-  {
-    title: "A Quick Guide to WordPress Hosting",
-    desc: "According to him, â€œI'm still surprised that this has happened. But we are surprised because we are so surprised.â€More revelations.",
-    img: "https://images.unsplash.com/photo-1620287341056-49a2f1ab2fdc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-    date: "Jan 4 2022",
-    href: "javascript:void(0)",
-  },
-  {
-    title: "7 Promising VS Code Extensions Introduced in 2022",
-    desc: "I hope I remembered all the stuff that they needed to know. They're like, 'okay,' and write it in their little reading notebooks.",
-    img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-    date: "Jan 4 2022",
-    href: "javascript:void(0)",
-  },
-  {
-    title: "How to Use Root C++ Interpreter Shell to Write C++ Programs",
-    desc: "The powerful gravity waves resulting from the impact of the planets' moons â€” four in total â€” were finally resolved in 2015 when gravitational.",
-    img: "https://images.unsplash.com/photo-1617529497471-9218633199c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-    date: "Jan 4 2022",
-    href: "javascript:void(0)",
-  },
-];
+import { useState } from "react";
+import mainP from "../../assets/main.png";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const { recipes } = useRecipeContext();
+  const { recipes, search } = useRecipeContext();
+  const navigate = useNavigate();
 
   // Log the recipes to see their structure
   console.log(recipes);
 
+  const [isHovered, setIsHovered] = useState(false);
+
+  const normalStyle = {
+    padding: "1rem",
+    textAlign: "center",
+    boxShadow: "0 2px 10px 0 rgba(0,0,0,0.1)",
+    transition: "box-shadow 0.5s",
+    cursor: "pointer",
+  };
+
+  const hoverStyle = {
+    ...normalStyle,
+    boxShadow: "0 0 10px 0 lightyellow",
+  };
+
   return (
-    <>
-      <Header />
-      <section>
-        <div className="max-w-screen-xl mx-auto px-4 md:px-8">
-          <ul className="grid gap-x-8 gap-y-10 mt-16 sm:grid-cols-2 lg:grid-cols-3">
-            {recipes.map((item, key) => (
-              <li className="w-full mx-auto group sm:max-w-sm" key={key}>
-                <div>
-                  <img
-                    src={item.recipe.image}
-                    loading="lazy"
-                    alt={item.recipe.label}
-                    className="w-full rounded-lg"
-                  />
-                  <div className="mt-3 space-y-2">
-                    <p className="text-gray-600 text-sm duration-150 group-hover:text-gray-800">
-                      {item.recipe.ingredientLines.join(', ')}
-                    </p>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+    <div>
+      <Header className="z-50" />
+      {!search.query ? (
+        <div className="flex justify-center">
+          <img
+            src={mainP}
+            className="mt-56 sm:mt-0 w-[70%] h-auto absolute top-[10rem] -z-5"
+            alt="Main Presentation"
+          />
         </div>
-      </section>
-    </>
+      ) : (
+        <section>
+          <div className="max-w-screen-xl mx-auto px-4 md:px-8 ">
+            <ul className="grid gap-x-8 gap-y-10 mt-16 sm:grid-cols-2 lg:grid-cols-3">
+              {recipes.map((item, key) => (
+                <li
+                  className="w-full mx-auto group sm:max-w-sm"
+                  key={key}
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                  style={isHovered ? hoverStyle : normalStyle}
+                  onClick={() => navigate("/details/" + item.recipe.label)}
+                >
+                  <div>
+                    <img
+                      src={item.recipe.image}
+                      loading="lazy"
+                      alt={item.recipe.label}
+                      className="w-full rounded-lg"
+                    />
+
+                    <div className="mt-3 space-y-2">
+                      <h3 className="text-center line-clamp-1">
+                        {item.recipe.label}
+                      </h3>
+                      <p className="text-gray-600 text-sm duration-150 group-hover:text-gray-800 line-clamp-3">
+                        {item.recipe.ingredientLines.join(", ")}
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+    </div>
   );
 };
-
 
 export default Home;
