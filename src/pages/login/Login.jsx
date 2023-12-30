@@ -1,13 +1,9 @@
-import React from "react";
-import GoogleIcon from "../../assets/GoogleIcon";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 
 const Login = () => {
-  //- consuming
   const { signIn } = useAuthContext();
-
   const [info, setInfo] = useState({
     email: "",
     password: "",
@@ -20,57 +16,52 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { email, password } = info;
-    console.log(info);
     signIn(email, password);
   };
 
-
   return (
     <>
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-800">
         <div
           className="
-   flex flex-col
-   bg-white
-   shadow-md
-   px-4
-   sm:px-6
-   md:px-8
-   lg:px-10
-   py-8
-   rounded-3xl
-   w-50
-   max-w-md
- "
+            flex flex-col
+            bg-white dark:bg-gray-700
+            shadow-md
+            px-4 sm:px-6 md:px-8 lg:px-10
+            py-8
+            rounded-3xl
+            w-50 max-w-md
+          "
         >
-          <div className="font-medium self-center text-xl sm:text-3xl text-gray-800">
+          <div className="font-medium self-center text-xl sm:text-3xl text-gray-800 dark:text-white">
             Sign In
           </div>
-          <div className="mt-4 self-center text-xl sm:text-sm text-gray-800">
+          <div className="mt-4 self-center text-xl sm:text-sm text-gray-800 dark:text-gray-300">
             Enter your credentials to get access account
           </div>
+
           <div className="mt-10">
             <form action="#" onSubmit={handleSubmit}>
               <div className="flex flex-col mb-5">
                 <label
                   htmlFor="email"
-                  className="mb-1 text-xs tracking-wide text-gray-600"
+                  className="mb-1 text-xs tracking-wide text-gray-600 dark:text-gray-300"
                 >
                   E-Mail Address:
                 </label>
                 <div className="relative">
                   <div
                     className="
-             inline-flex
-             items-center
-             justify-center
-             absolute
-             left-0
-             top-0
-             h-full
-             w-10
-             text-gray-400
-           "
+                      inline-flex
+                      items-center
+                      justify-center
+                      absolute
+                      left-0
+                      top-0
+                      h-full
+                      w-10
+                      text-gray-400
+                    "
                   >
                     <i className="fas fa-at text-blue-500" />
                   </div>
@@ -79,16 +70,17 @@ const Login = () => {
                     type="email"
                     name="email"
                     className="
-             text-sm
-             placeholder-gray-500
-             pl-10
-             pr-4
-             rounded-2xl
-             border border-gray-400
-             w-full
-             py-2
-             focus:outline-none focus:border-blue-400
-           "
+                      text-sm
+                      placeholder-gray-500
+                      pl-10
+                      pr-4
+                      rounded-2xl
+                      border border-gray-400
+                      w-full
+                      py-2
+                      focus:outline-none focus:border-blue-400
+                      dark:bg-gray-600 dark:text-white dark:border-gray-500
+                    "
                     placeholder="Enter your email"
                     onChange={handleChange}
                   />
@@ -97,23 +89,23 @@ const Login = () => {
               <div className="flex flex-col mb-6">
                 <label
                   htmlFor="password"
-                  className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
+                  className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600 dark:text-gray-300"
                 >
                   Password:
                 </label>
                 <div className="relative">
                   <div
                     className="
-             inline-flex
-             items-center
-             justify-center
-             absolute
-             left-0
-             top-0
-             h-full
-             w-10
-             text-gray-400
-           "
+                      inline-flex
+                      items-center
+                      justify-center
+                      absolute
+                      left-0
+                      top-0
+                      h-full
+                      w-10
+                      text-gray-400
+                    "
                   >
                     <span>
                       <i className="fas fa-lock text-blue-500" />
@@ -124,16 +116,17 @@ const Login = () => {
                     type="password"
                     name="password"
                     className="
-             text-sm
-             placeholder-gray-500
-             pl-10
-             pr-4
-             rounded-2xl
-             border border-gray-400
-             w-full
-             py-2
-             focus:outline-none focus:border-blue-400
-           "
+                      text-sm
+                      placeholder-gray-500
+                      pl-10
+                      pr-4
+                      rounded-2xl
+                      border border-gray-400
+                      w-full
+                      py-2
+                      focus:outline-none focus:border-blue-400
+                      dark:bg-gray-600 dark:text-white dark:border-gray-500
+                    "
                     placeholder="Enter your password"
                     onChange={handleChange}
                   />
@@ -143,24 +136,25 @@ const Login = () => {
                 <button
                   type="submit"
                   className="
-           flex
-           mt-2
-           items-center
-           justify-center
-           focus:outline-none
-           text-white text-sm
-           sm:text-base
-           bg-blue-500
-           hover:bg-blue-600
-           rounded-2xl
-           py-2
-           w-full
-           transition
-           duration-150
-           ease-in
-         "
+                    flex
+                    mt-2
+                    items-center
+                    justify-center
+                    focus:outline-none
+                    text-white text-sm
+                    sm:text-base
+                    bg-blue-500
+                    hover:bg-blue-600
+                    rounded-2xl
+                    py-2
+                    w-full
+                    transition
+                    duration-150
+                    ease-in
+                    dark:hover:bg-blue-700
+                  "
                 >
-                  <span className="mr-2 uppercase">Sign Up</span>
+                  <span className="mr-2 uppercase">Sign In</span>
                   <span>
                     <svg
                       className="h-6 w-6"
@@ -181,20 +175,10 @@ const Login = () => {
         </div>
         <div className="flex justify-center items-center mt-6">
           <Link
-            to="#"
-            target="_blank"
-            className="
-     inline-flex
-     items-center
-     text-gray-700
-     font-medium
-     text-xs text-center
-   "
+            to="/register"
+            className="text-xs ml-2 text-blue-500 dark:text-blue-400 font-semibold"
           >
-            <span className="ml-2">You have an account?</span>
-          </Link>
-          <Link to="/register" className="text-xs ml-2 text-blue-500 font-semibold">
-            Login here
+            Don't have an account? Register here
           </Link>
         </div>
       </div>

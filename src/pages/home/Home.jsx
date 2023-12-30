@@ -29,12 +29,12 @@ const Home = () => {
 
   return (
     <div>
-      <Header className="z-50" />
+      <Header/>
       {!search.query ? (
-        <div className="flex justify-center">
+        <div className="flex justify-center absolute -z-10 top-[10rem]">
           <img
             src={mainP}
-            className="mt-56 sm:mt-0 w-[70%] h-auto absolute top-[10rem]  z-[-1]"
+            className="mt-56 sm:mt-0 w-[70%] h-auto   "
             alt="Main Presentation"
           />
         </div>
@@ -63,7 +63,7 @@ const Home = () => {
                       <h3 className="text-center line-clamp-1">
                         {item.recipe.label}
                       </h3>
-                      <p className="text-gray-600 text-sm duration-150 group-hover:text-gray-800 line-clamp-3">
+                      <p className="text-gray-600 text-sm   line-clamp-3 dark:text-white dark::hover:text-white">
                         {item.recipe.ingredientLines.join(", ")}
                       </p>
                     </div>

@@ -27,7 +27,7 @@ export default function Navbar() {
           <div className="relative flex items-center justify-between">
             {/* left content */}
             <Link className="pr-2 text-2xl font-semibold" to="/">
-              Recipe App
+              FoodApp
             </Link>
             {/* right content */}
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
