@@ -1,28 +1,28 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from "firebase/auth";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 import { auth } from "../auth/firebase";
 
-//- 1 create context
 export const AuthContext = createContext();
 
-// - create custom hook
 export const useAuthContext = () => {
   return useContext(AuthContext);
 };
 
-//-2 create provider
 const AuthContextProvider = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(sessionStorage.getItem("user"))
+  );
   const navigate = useNavigate();
-  // - register işlemleri
+
   const createUser = async (email, password, displayName) => {
     try {
-      //? yeni bir kullanıcı oluşturmak için kullanılan firebase metodu
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -50,11 +50,33 @@ const AuthContextProvider = ({ children }) => {
       toastErrorNotify(error.message);
     }
   };
+  useEffect(() => {
+    userObserver();
+  }, []);
+
+  const userObserver = () => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user);
+        const { email, displayName, photoUrl } = user;
+        setCurrentUser({ email, displayName, photoUrl });
+        sessionStorage.setItem(
+          "user",
+          JSON.stringify({ email, displayName, photoUrl })
+        );
+      } else {
+        setCurrentUser(null);
+      }
+    });
+  };
 
   const values = {
+    currentUser,
     createUser,
-    signIn
+    signIn,
+    userObserver,
   };
+
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
 
