@@ -1,8 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import GoogleIcon from "../../assets/GoogleIcon";
+import { useAuthContext } from "../../context/AuthContext";
 
 const Register = () => {
+  // - consuming
+
+  const {createUser} = useAuthContext();
+
   const [info, setInfo] = useState({
     firstName: "",
     lastName: "",
@@ -12,11 +17,17 @@ const Register = () => {
 
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
+    console.log(info)
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const { email, password, firstName, lastName } = info;
+    const displayName =`${firstName} ${lastName}`
+    console.log(info)
+    createUser(email, password, displayName)
+
+
     console.log(info);
   };
   return (
@@ -44,13 +55,11 @@ const Register = () => {
             Enter your credentials to get access account
           </div>
           <div className="mt-10">
-            <form action="#">
+            <form onSubmit={handleSubmit}>
               <div className="flex flex-col mb-5">
                 <label
-                  htmlFor="email"
+                  htmlFor="name"
                   className="mb-1 text-xs tracking-wide text-gray-600"
-                  name="firstName"
-                  onClick={handleChange}
                 >
                   Name:
                 </label>
@@ -71,9 +80,9 @@ const Register = () => {
                     <i className="fas fa-user text-blue-500" />
                   </div>
                   <input
-                    id="email"
-                    type="email"
-                    name="email"
+                    id="firstName"
+                    type="firstName"
+                    name="firstName"
                     className="
                 text-sm
                 placeholder-gray-500
@@ -86,15 +95,14 @@ const Register = () => {
                 focus:outline-none focus:border-blue-400
               "
                     placeholder="Enter your name"
+                    onClick={handleChange}
                   />
                 </div>
               </div>
               <div className="flex flex-col mb-5">
                 <label
-                  htmlFor="email"
+                  htmlFor="lastName"
                   className="mb-1 text-xs tracking-wide text-gray-600"
-                  name="lastName"
-                  onClick={handleChange}
                 >
                   Last Name:
                 </label>
@@ -115,9 +123,9 @@ const Register = () => {
                     <i className="fas fa-user text-blue-500" />
                   </div>
                   <input
-                    id="email"
-                    type="email"
-                    name="email"
+                    id="lastName"
+                    type="lastName"
+                    name="lastName"
                     className="
                 text-sm
                 placeholder-gray-500
@@ -130,6 +138,7 @@ const Register = () => {
                 focus:outline-none focus:border-blue-400
               "
                     placeholder="Enter your last name"
+                    onClick={handleChange}
                   />
                 </div>
               </div>
@@ -172,6 +181,7 @@ const Register = () => {
                 focus:outline-none focus:border-blue-400
               "
                     placeholder="Enter your email"
+                    onClick={handleChange}
                   />
                 </div>
               </div>
@@ -216,6 +226,7 @@ const Register = () => {
                 focus:outline-none focus:border-blue-400
               "
                     placeholder="Enter your password"
+                    onClick={handleChange}
                   />
                 </div>
               </div>
