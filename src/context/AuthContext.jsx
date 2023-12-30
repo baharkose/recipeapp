@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
@@ -50,6 +51,9 @@ const AuthContextProvider = ({ children }) => {
       toastErrorNotify(error.message);
     }
   };
+
+  // - bunu kullanmadığımızda observer çalışmıyor.
+
   useEffect(() => {
     userObserver();
   }, []);
@@ -65,16 +69,24 @@ const AuthContextProvider = ({ children }) => {
           JSON.stringify({ email, displayName, photoUrl })
         );
       } else {
-        setCurrentUser(null);
+        setCurrentUser(false);
+        //- logoutta current userı false yap. ki logine geri gönsün
+        sessionStorage.removeItem("user")
       }
     });
   };
+
+  const logOut = () => {
+    signOut(auth)
+    toastSuccessNotify("Logged out successfully")
+  }
 
   const values = {
     currentUser,
     createUser,
     signIn,
     userObserver,
+    logOut
   };
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
