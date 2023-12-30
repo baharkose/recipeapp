@@ -1,7 +1,7 @@
 import React from "react";
 import GoogleIcon from "../../assets/GoogleIcon";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 
 const Login = () => {
@@ -21,8 +21,9 @@ const Login = () => {
     e.preventDefault();
     const { email, password } = info;
     console.log(info);
-    signIn(email, password)
+    signIn(email, password);
   };
+
 
   return (
     <>
@@ -192,7 +193,7 @@ const Login = () => {
           >
             <span className="ml-2">You have an account?</span>
           </Link>
-          <Link to="#" className="text-xs ml-2 text-blue-500 font-semibold">
+          <Link to="/register" className="text-xs ml-2 text-blue-500 font-semibold">
             Login here
           </Link>
         </div>
