@@ -6,6 +6,7 @@ function App() {
     <>
       <AuthContextProvider>
         <AppRouter />
+        <ToastContainer />
       </AuthContextProvider>
     </>
   );

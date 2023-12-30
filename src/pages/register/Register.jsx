@@ -95,7 +95,7 @@ const Register = () => {
                 focus:outline-none focus:border-blue-400
               "
                     placeholder="Enter your name"
-                    onClick={handleChange}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -138,7 +138,7 @@ const Register = () => {
                 focus:outline-none focus:border-blue-400
               "
                     placeholder="Enter your last name"
-                    onClick={handleChange}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -181,7 +181,7 @@ const Register = () => {
                 focus:outline-none focus:border-blue-400
               "
                     placeholder="Enter your email"
-                    onClick={handleChange}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -226,7 +226,7 @@ const Register = () => {
                 focus:outline-none focus:border-blue-400
               "
                     placeholder="Enter your password"
-                    onClick={handleChange}
+                    onChange={handleChange}
                   />
                 </div>
               </div>

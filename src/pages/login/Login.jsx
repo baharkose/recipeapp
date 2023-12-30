@@ -2,8 +2,12 @@ import React from "react";
 import GoogleIcon from "../../assets/GoogleIcon";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../../context/AuthContext";
 
 const Login = () => {
+  //- consuming
+  const { signIn } = useAuthContext();
+
   const [info, setInfo] = useState({
     email: "",
     password: "",
@@ -17,6 +21,7 @@ const Login = () => {
     e.preventDefault();
     const { email, password } = info;
     console.log(info);
+    signIn(email, password)
   };
 
   return (
