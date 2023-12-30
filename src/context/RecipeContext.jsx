@@ -11,13 +11,13 @@ const RecipeContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const API_KEY = process.env.REACT_APP_RECIPE_KEY;
   const APP_ID = process.env.REACT_APP_RECIPE_ID;
-  const meal = "breakfast";
-  const query = "pizza";
 
   const [search, setSearch] = useState({
     query: "",
     meal: "breakfast",
   });
+
+  const { query, meal } = search;
 
   const FEATURED_API = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${API_KEY}&mealType=${meal}`;
 
@@ -31,7 +31,7 @@ const RecipeContextProvider = ({ children }) => {
   // - ilk açılışta gelmesi için
   useEffect(() => {
     getRecipes();
-  }, []);
+  }, [search]);
   const values = { recipes, loading, search, setSearch, getRecipes };
 
   return (

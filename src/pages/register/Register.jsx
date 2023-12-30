@@ -2,11 +2,12 @@ import React from "react";
 import { useState } from "react";
 import GoogleIcon from "../../assets/GoogleIcon";
 import { useAuthContext } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   // - consuming
 
-  const {createUser} = useAuthContext();
+  const { createUser } = useAuthContext();
 
   const [info, setInfo] = useState({
     firstName: "",
@@ -17,16 +18,15 @@ const Register = () => {
 
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
-    console.log(info)
+    console.log(info);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const { email, password, firstName, lastName } = info;
-    const displayName =`${firstName} ${lastName}`
-    console.log(info)
-    createUser(email, password, displayName)
-
+    const displayName = `${firstName} ${lastName}`;
+    console.log(info);
+    createUser(email, password, displayName);
 
     console.log(info);
   };
@@ -309,9 +309,12 @@ const Register = () => {
           >
             <span className="ml-2">You have an account?</span>
           </a>
-          <a href="#" className="text-xs ml-2 text-blue-500 font-semibold">
+          <Link
+            to="/login"
+            className="text-xs ml-2 text-blue-500 font-semibold"
+          >
             Login here
-          </a>
+          </Link>
         </div>
       </div>
     </>

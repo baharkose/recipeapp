@@ -25,7 +25,7 @@ const Header = () => {
         <div className="space-y-5 sm:text-center sm:max-w-md sm:mx-auto">
           <h2 className="mb-2 text-5xl font-bold tracking-tight md:text-6xl xl:text-4xl z-50">
             Are you ready <br />
-            <span class="text-blue-600 dark:text-primary-400 z-50">
+            <span class="text-blue-600 dark:text-primary-400 z-50 dark:text-yellow-300">
               for latest recipe posts?
             </span>
           </h2>
@@ -36,7 +36,7 @@ const Header = () => {
         <div className="relative flex w-full flex-wrap items-stretch justify-center">
           <input
             type="search"
-            className="z-50 relative m-0 -mr-0.5 border border-blue-600 block min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-white bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:bg-transparent dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+            className="z-50 relative m-0 -mr-0.5 border border-blue-600 dark:text-yellow-300 block min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-white bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:bg-transparent dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
             placeholder="Search"
             aria-label="Search"
             aria-describedby="button-addon1"
@@ -44,7 +44,7 @@ const Header = () => {
             onChange={handleChange}
           />
           <select
-            className="relative z-[2] rounded-r border border-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-black shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg dark:dark:bg-transparent dark:font-extrabold"
+            className="relative z-[2] rounded-r border border-solid dark:text-yellow-300 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-black shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg dark:bg-transparent dark:font-extrabold"
             name="meal"
             onChange={handleChange}
           >
@@ -56,7 +56,7 @@ const Header = () => {
           </select>
           {/*Search button*/}
           <button
-            className="relative z-[2] flex items-center rounded-r bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
+            className="relative z-[2] flex items-center rounded-r bg-blue-600 dark:bg-yellow-300 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
             type="button"
             id="button-addon1"
             data-te-ripple-init=""

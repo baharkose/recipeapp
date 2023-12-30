@@ -34,7 +34,7 @@ const AppRouter = () => {
         <Route element={<ProtectedRoutes />}>
           <Route path="/" element={<Home />} />
           <Route path="about" element={<About />} />
-          <Route path="details/:id" element={<Details />} />
+          <Route path="details/:label" element={<Details />} />
         </Route>
       </Route>
     </Routes>

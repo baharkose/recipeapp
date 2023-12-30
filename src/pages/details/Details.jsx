@@ -1,60 +1,47 @@
+import React from "react";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useRecipeContext } from "../../context/RecipeContext";
 
 const Details = () => {
-  const {id} = useParams();
-  const [recipeDetail, setRecipeDetail] = useState({});
-  
+  const { recipes } = useRecipeContext();
+  const { label } = useParams();
+  const decodedLabel = decodeURIComponent(label); // Decode the label from the URL
+  const recipeDetail = recipes.find(
+    (recipe) => recipe.recipe.label === decodedLabel
+  );
+
+  // Handle loading or no data cases
+  if (!recipeDetail) {
+    return <div>Loading or recipe not found...</div>;
+  }
+
+  const { image, ingredientLines } = recipeDetail.recipe;
 
   return (
-    <>
-      {/* Container for demo purpose */}
-      <div className="container my-24 mx-auto md:px-6">
-        {/* Section: Design Block */}
-        <section className="mb-32">
-          <img
-            src="https://mdbcdn.b-cdn.net/img/new/slides/198.jpg"
-            className="mb-6 w-full rounded-lg shadow-lg dark:shadow-black/20"
-            alt="image"
-          />
-          <div className="mb-6 flex items-center">
+    <div className="container mx-auto md:px-6 w-[60%]  mt-6">
+      <section>
+        <h1 className="mb-6 text-3xl font-bold text-center">{decodedLabel}</h1>
+        <div className="flex justify-center gap-8 border-red-400">
+          <div className="flex justify-center">
             <img
-              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (23).jpg"
-              className="mr-2 h-8 rounded-full"
-              alt="avatar"
-              loading="lazy"
+              src={image}
+              className="mb-6 w-full rounded-lg shadow-lg"
+              alt={decodedLabel}
             />
-            <div>
-              <span>
-                {" "}
-                Published <u>15.07.2020</u> by{" "}
-              </span>
-              <a href="#!" className="font-medium">
-                Anna Maria Doe
-              </a>
-            </div>
           </div>
-          <h1 className="mb-6 text-3xl font-bold">
-            An intriguing title for an interesting article
-          </h1>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi
-            harum tempore cupiditate asperiores provident, itaque, quo ex iusto
-            rerum voluptatum delectus corporis quisquam maxime a ipsam nisi
-            sapiente qui optio! Dignissimos harum quod culpa officiis suscipit
-            soluta labore! Expedita quas, nesciunt similique autem, sunt,
-            doloribus pariatur maxime qui sint id enim. Placeat, maxime labore.
-            Dolores ex provident ipsa impedit, omnis magni earum. Sed fuga ex
-            ducimus consequatur corporis, architecto nesciunt vitae ipsum
-            consequuntur perspiciatis nulla esse voluptatem quos dolorum
-            delectus similique eum vero in est velit quasi pariatur blanditiis
-            incidunt quam.
-          </p>
-        </section>
-        {/* Section: Design Block */}
-      </div>
-      {/* Container for demo purpose */}
-    </>
+          <div className="w-[45%]">
+            <h2 className="font-semibold text-[1.3rem] mb-2">Ingredients</h2>
+            <ul>
+              {ingredientLines.map((line, index) => (
+                <li className="list-disc" key={index}>
+                  {line}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 

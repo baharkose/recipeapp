@@ -34,7 +34,7 @@ const Home = () => {
         <div className="flex justify-center">
           <img
             src={mainP}
-            className="mt-56 sm:mt-0 w-[70%] h-auto absolute top-[10rem] -z-5"
+            className="mt-56 sm:mt-0 w-[70%] h-auto absolute top-[10rem]  z-[-1]"
             alt="Main Presentation"
           />
         </div>
@@ -49,7 +49,7 @@ const Home = () => {
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
                   style={isHovered ? hoverStyle : normalStyle}
-                  onClick={() => navigate("/details/" + item.recipe.label)}
+                  onClick={() => navigate("/details/" + encodeURIComponent(item.recipe.label))}
                 >
                   <div>
                     <img
