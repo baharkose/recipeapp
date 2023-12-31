@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.login{
+    background-image: url("../public/img/bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
