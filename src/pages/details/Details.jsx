@@ -21,7 +21,7 @@ const Details = () => {
     <div className="container mx-auto md:px-6 w-[60%]  mt-6">
       <section>
         <h1 className="mb-6 text-3xl font-bold text-center">{decodedLabel}</h1>
-        <div className="flex justify-center gap-8 border-red-400">
+        <div className="flex flex-col md:flex-row justify-center gap-8 border-red-400 flex-wrap">
           <div className="flex justify-center">
             <img
               src={image}
@@ -29,7 +29,7 @@ const Details = () => {
               alt={decodedLabel}
             />
           </div>
-          <div className="w-[45%]">
+          <div>
             <h2 className="font-semibold text-[1.3rem] mb-2">Ingredients</h2>
             <ul>
               {ingredientLines.map((line, index) => (

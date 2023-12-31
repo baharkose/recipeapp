@@ -8,7 +8,7 @@ export const useRecipeContext = () => {
 };
 const RecipeContextProvider = ({ children }) => {
   const [recipes, setRecipes] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loadingm, setLoading] = useState(false);
   const API_KEY = process.env.REACT_APP_RECIPE_KEY;
   const APP_ID = process.env.REACT_APP_RECIPE_ID;
 
@@ -32,7 +32,7 @@ const RecipeContextProvider = ({ children }) => {
   useEffect(() => {
     getRecipes();
   }, [search]);
-  const values = { recipes, loading, search, setSearch, getRecipes };
+  const values = { recipes, loadingm, search, setSearch, getRecipes };
 
   return (
     <RecipeContext.Provider value={values}>{children}</RecipeContext.Provider>

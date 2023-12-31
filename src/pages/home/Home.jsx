@@ -4,9 +4,10 @@ import { useRecipeContext } from "../../context/RecipeContext";
 import { useState } from "react";
 import mainP from "../../assets/main.png";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../components/Loading";
 
 const Home = () => {
-  const { recipes, search } = useRecipeContext();
+  const { recipes, search, loadingm } = useRecipeContext();
   const navigate = useNavigate();
 
   // Log the recipes to see their structure
@@ -29,7 +30,7 @@ const Home = () => {
 
   return (
     <div>
-      <Header/>
+      <Header />
       {!search.query ? (
         <div className="flex justify-center absolute -z-10 top-[10rem] dark:z-0">
           <img
@@ -38,6 +39,8 @@ const Home = () => {
             alt="Main Presentation"
           />
         </div>
+      ) : loadingm ? (
+        <Loading />
       ) : (
         <section>
           <div className="max-w-screen-xl mx-auto px-4 md:px-8 ">
@@ -49,7 +52,11 @@ const Home = () => {
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
                   style={isHovered ? hoverStyle : normalStyle}
-                  onClick={() => navigate("/details/" + encodeURIComponent(item.recipe.label))}
+                  onClick={() =>
+                    navigate(
+                      "/details/" + encodeURIComponent(item.recipe.label)
+                    )
+                  }
                 >
                   <div>
                     <img
