@@ -25,7 +25,7 @@ const Register = () => {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-800">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-800 login">
         <div
           className="
             flex flex-col
