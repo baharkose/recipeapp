@@ -21,7 +21,7 @@ const Header = () => {
   return (
     <>
       {/* TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com */}
-      <div className="mt-16 w-[70%] m-auto z-50" style={{ zIndex: 100 }}>
+      <div className="mt-16 w-[55%] m-auto z-50" style={{ zIndex: 100 }}>
         <div className="space-y-5 sm:text-center sm:max-w-md sm:mx-auto">
           <h2
             className="mb-2 text-5xl font-bold tracking-tight md:text-6xl xl:text-4xl z-50"
