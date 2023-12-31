@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
+import GoogleIcon from "../../assets/GoogleIcon";
 
 const Register = () => {
-  const { createUser } = useAuthContext();
+  const { createUser, signUpProvider } = useAuthContext();
   const [info, setInfo] = useState({
     firstName: "",
     lastName: "",
@@ -132,6 +133,17 @@ const Register = () => {
                   className="flex mt-2 items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-500 hover:bg-blue-600 rounded-2xl py-2 w-full transition duration-150 ease-in dark:hover:bg-blue-700"
                 >
                   <span className="mr-2 uppercase">Sign Up</span>
+                </button>
+              </div>
+              <div className="flex w-full">
+                <button
+                  type="button"
+                  className="flex mt-2 items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-500 hover:bg-blue-600 rounded-2xl py-2 w-full transition duration-150 ease-in dark:hover:bg-blue-700"
+                  onClick={signUpProvider}
+                >
+                  {" "}
+                  <GoogleIcon color="currentColor" />
+                  <span className="mr-2 uppercase">Continue with Google</span>
                 </button>
               </div>
             </form>

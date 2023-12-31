@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 
 const Login = () => {
-  const { signIn } = useAuthContext();
+  const { signIn, forgotPassword } = useAuthContext();
   const [info, setInfo] = useState({
     email: "",
     password: "",
@@ -169,6 +169,15 @@ const Login = () => {
                     </svg>
                   </span>
                 </button>
+              </div>
+              <div className="mt-4 text-center">
+                <Link
+                  to="/forgot-password"
+                  className="text-xs text-blue-500 dark:text-blue-400 font-semibold"
+                  onClick={() => forgotPassword(info.email)}
+                >
+                  Forgot your password?
+                </Link>
               </div>
             </form>
           </div>

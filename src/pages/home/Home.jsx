@@ -31,7 +31,7 @@ const Home = () => {
     <div>
       <Header/>
       {!search.query ? (
-        <div className="flex justify-center absolute -z-10 top-[10rem]">
+        <div className="flex justify-center absolute -z-10 top-[10rem] dark:z-0">
           <img
             src={mainP}
             className="mt-56 sm:mt-0 w-[70%] h-auto   "

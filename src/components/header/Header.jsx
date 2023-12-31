@@ -25,14 +25,13 @@ const Header = () => {
         <div className="space-y-5 sm:text-center sm:max-w-md sm:mx-auto">
           <h2
             className="mb-2 text-5xl font-bold tracking-tight md:text-6xl xl:text-4xl z-50"
-            style={{ zIndex: 100 }}
           >
             Are you ready <br />
             <span class="text-blue-600 dark:text-primary-400 z-50">
               for latest recipe posts?
             </span>
           </h2>
-          <p className="text-lg text-black dark:text-neutral-300 pb-2 z-[100]">
+          <p className="text-lg text-black dark:text-neutral-300 pb-2 z-[100] bg-white dark:bg-gray-800 z-50" >
             Recipes that are loved by the community. Updated every hour.
           </p>
         </div>

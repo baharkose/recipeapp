@@ -1,10 +1,13 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import {
+  GoogleAuthProvider,
+  signInWithPopup,
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
@@ -71,22 +74,56 @@ const AuthContextProvider = ({ children }) => {
       } else {
         setCurrentUser(false);
         //- logoutta current userı false yap. ki logine geri gönsün
-        sessionStorage.removeItem("user")
+        sessionStorage.removeItem("user");
       }
     });
   };
 
   const logOut = () => {
-    signOut(auth)
-    toastSuccessNotify("Logged out successfully")
-  }
+    signOut(auth);
+    toastSuccessNotify("Logged out successfully");
+  };
+
+  //* https://console.firebase.google.com/
+  //* => Authentication => sign-in-method => enable Google
+  //! Google ile girişi enable yap
+  //* => Authentication => settings => Authorized domains => add domain
+  //! Projeyi deploy ettikten sonra google sign-in çalışması için domain listesine deploy linkini ekle
+  // - gmaille giriş
+  const signUpProvider = () => {
+    //? Google ile giriş yapılması için kullanılan firebase metodu
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // console.log(result);
+        navigate("/");
+        toastSuccessNotify("Logged in successfully");
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        console.log(error);
+      });
+  };
+
+  const forgotPassword = (email) => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        // Password reset email sent!
+        toastSuccessNotify("Please check your email");
+      })
+      .catch((error) => {
+        toastErrorNotify(error.message);
+      });
+  };
 
   const values = {
     currentUser,
     createUser,
     signIn,
     userObserver,
-    logOut
+    logOut,
+    signUpProvider,
+    forgotPassword,
   };
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
