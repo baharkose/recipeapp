@@ -12,6 +12,7 @@ A huge thank you to everyone who has supported me in this journey! Your comments
 #contextproivder
 #router
 
-Visti to link: https://lnkd.in/d6M4yD-3
+Visit to link: https://lnkd.in/d6M4yD-3
 
-![recipe](https://github.com/baharkose/recipeapp/assets/110201916/5fa392ec-4bb4-4488-a458-58a7f1a19d8a)
+
+![recipe](https://github.com/baharkose/recipeapp/assets/110201916/1dbfee1e-78d9-47f3-9c13-2dddae86149f)
